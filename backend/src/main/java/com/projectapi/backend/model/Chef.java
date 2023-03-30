@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Entity
@@ -18,6 +20,8 @@ public class Chef {
     private String email;
     private String password;
     private String avatar;
+    @Transient
+    private String response;
     @OneToMany
     @JoinColumn(name = "chef_id", referencedColumnName = "id")
     private List<Personnel> personnels;
@@ -26,4 +30,5 @@ public class Chef {
         super();
         password = "1234";
     }
+
 }

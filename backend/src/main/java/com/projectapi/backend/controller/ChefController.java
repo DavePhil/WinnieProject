@@ -22,8 +22,15 @@ public class ChefController {
                            @RequestParam("nom") String nom,
                            @RequestParam("email") String email,
                            @RequestParam("telephone") String telephone) throws IOException {
-        if(!avatar.getContentType().equals("image/jpeg") && !avatar.getContentType().equals("image/png"));
-        if(chefService.findByEmail(email).isPresent() || chefService.findByTelephone(telephone).isPresent()) return null; // verifie la présence de l'email ou du télephone pour empêcher les doublons
+        Chef chef = new Chef();
+        if(!avatar.getContentType().equals("image/jpeg") && !avatar.getContentType().equals("image/png")){
+            chef.setResponse("Seulement les images jpeg ou png sont acceptees");
+            return chef;
+        }
+        if(chefService.findByEmail(email).isPresent() || chefService.findByTelephone(telephone).isPresent()){
+            chef.setResponse("L'utilisateur existe deja");
+            return chef;// verifie la présence de l'email ou du télephone pour empêcher les doublons
+        }
         return chefService.saveChef(avatar,nom,email,telephone);
 
     }

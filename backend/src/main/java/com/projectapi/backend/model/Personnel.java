@@ -1,9 +1,6 @@
 package com.projectapi.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -19,6 +16,8 @@ public class Personnel {
     private String email;
     private String password;
     private String avatar;
+    @Transient
+    private String response;
 
     public Personnel (){
         super();
