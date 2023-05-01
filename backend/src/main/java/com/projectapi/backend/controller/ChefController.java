@@ -39,29 +39,18 @@ public class ChefController {
 
     @ResponseBody
     @GetMapping("/getchefbyemailandpassword/{email}/{password}")
-    public Map<String,String> getChefByEmailAndPassword(@PathVariable("email") String email,
-                                         @PathVariable("password") String password){
+    public Chef getChefByEmailAndPassword(@PathVariable("email") String email,
+                                                    @PathVariable("password") String password){
 
-        Optional<Chef> chef = chefService.findByEmailAndPassword(email, password);
-        String response ="";
-        HashMap<String, String> map = new HashMap<>();
-        if(chef.isPresent()) response = "Connexion reussie";
-        else response = "Impossible de vous connecter";
-        map.put("response", response);
-        return map;
+        return chefService.findByEmailAndPassword(email, password);
 
     }
 
     @ResponseBody
     @GetMapping("/getchefbytelephoneandpassword/{telephone}/{password}")
-    public Map<String,String> getchefByTelephoneAndPassword(@PathVariable("telephone") String telephone,
-                                              @PathVariable("password") String password){
-        Optional<Chef> chef = chefService.findByTelephoneAndPassword(telephone, password);
-        String response ="";
-        HashMap<String, String> map = new HashMap<>();
-        if(chef.isPresent()) response = "Connexion reussie";
-        else response = "Impossible de vous connecter";
-        map.put("response", response);
-        return map;
+    public Chef getchefByTelephoneAndPassword(@PathVariable("telephone") String telephone,
+                                                        @PathVariable("password") String password){
+        return  chefService.findByTelephoneAndPassword(telephone, password);
+
     }
 }

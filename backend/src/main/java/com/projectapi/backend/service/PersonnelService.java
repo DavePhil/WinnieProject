@@ -38,13 +38,13 @@ public class PersonnelService {
         return personnel;
     }
 
-    public Optional<Personnel> findByEmailAndPassword(String email, String password){
-        Optional<Personnel> personnel = personnelRepository.findByEmailAndPassword(email, password);
-         return personnel;
+    public Personnel findByEmailAndPassword(String email, String password){
+       return personnelRepository.findByEmailAndPassword(email, password);
+
     }
-    public Optional<Personnel> findByTelephoneAndPassword(String telephone, String password){
-        Optional<Personnel> personnel = personnelRepository.findByTelephoneAndPassword(telephone, password);
-        return personnel;
+    public Personnel findByTelephoneAndPassword(String telephone, String password){
+       return personnelRepository.findByTelephoneAndPassword(telephone, password);
+
     }
 
 

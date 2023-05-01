@@ -41,14 +41,13 @@ public class ChefService {
         return chef;
     }
 
-    public Optional<Chef> findByEmailAndPassword(String email, String password){
-        Optional<Chef> chef = chefRepository.findByEmailAndPassword(email, password);
-         return chef;
+    public Chef findByEmailAndPassword(String email, String password){
+      return chefRepository.findByEmailAndPassword(email, password);
+
     }
 
-    public Optional<Chef> findByTelephoneAndPassword(String telephone, String password){
-        Optional<Chef> chef = chefRepository.findByTelephoneAndPassword(telephone, password);
-        return chef;
+    public Chef findByTelephoneAndPassword(String telephone, String password){
+        return chefRepository.findByTelephoneAndPassword(telephone, password);
     }
 
     public Optional<Chef> findByEmail(String email){

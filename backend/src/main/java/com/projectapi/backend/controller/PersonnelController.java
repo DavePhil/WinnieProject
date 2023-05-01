@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -37,28 +34,17 @@ public class PersonnelController {
 
     @ResponseBody
     @GetMapping("/login/{email}/{password}")
-    public Map<String, String> getPersonnelByEmailAndPassword(@PathVariable("email") String email,
+    public Personnel getPersonnelByEmailAndPassword(@PathVariable("email") String email,
                                               @PathVariable("password") String password){
-       Optional<Personnel> personnel = personnelService.findByEmailAndPassword(email, password);
-       String response ="";
-        HashMap<String, String> map = new HashMap<>();
-       if(personnel.isPresent()) response = "Connexion reussie";
-       else response = "Impossible de vous connecter";
-       map.put("response", response);
-       return map;
+        return personnelService.findByEmailAndPassword(email, password);
+
     }
 
     @ResponseBody
     @GetMapping("/logint/{telephone}/{password}")
-    public Map<String, String> getChefByTelephoneAndPassword(@PathVariable("telephone") String telephone,
+    public  Personnel getChefByTelephoneAndPassword(@PathVariable("telephone") String telephone,
                                               @PathVariable("password") String password){
-        Optional<Personnel>  personnel = personnelService.findByTelephoneAndPassword(telephone, password);
-        String response ="";
-        HashMap<String, String> map = new HashMap<>();
-        if(personnel.isPresent()) response = "Connexion reussie";
-        else response = "Impossible de vous connecter";
-        map.put("response", response);
-        return map;
+         return  personnelService.findByTelephoneAndPassword(telephone, password);
     }
 
 
