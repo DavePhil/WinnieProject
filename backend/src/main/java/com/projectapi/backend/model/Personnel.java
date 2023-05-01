@@ -13,6 +13,7 @@ public class Personnel {
     private Long id;
     private String telephone;
     private String nom;
+    @Column(unique = true)
     private String email;
     private String password;
     private String avatar;

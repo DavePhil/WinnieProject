@@ -16,8 +16,11 @@ public class Chef {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
+    @Column(unique = true)
     private String telephone;
+    @Column(unique = true)
     private String email;
+
     private String password;
     private String avatar;
     @Transient

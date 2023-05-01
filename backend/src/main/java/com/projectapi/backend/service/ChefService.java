@@ -43,14 +43,12 @@ public class ChefService {
 
     public Optional<Chef> findByEmailAndPassword(String email, String password){
         Optional<Chef> chef = chefRepository.findByEmailAndPassword(email, password);
-        if(chef.isPresent()) return chef;
-        else return null;
+         return chef;
     }
 
     public Optional<Chef> findByTelephoneAndPassword(String telephone, String password){
         Optional<Chef> chef = chefRepository.findByTelephoneAndPassword(telephone, password);
-        if(chef.isPresent()) return chef;
-        else return null;
+        return chef;
     }
 
     public Optional<Chef> findByEmail(String email){

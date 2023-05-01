@@ -40,14 +40,14 @@ public class PersonnelService {
 
     public Optional<Personnel> findByEmailAndPassword(String email, String password){
         Optional<Personnel> personnel = personnelRepository.findByEmailAndPassword(email, password);
-        if(personnel.isPresent()) return personnel;
-        else return null;
+         return personnel;
     }
     public Optional<Personnel> findByTelephoneAndPassword(String telephone, String password){
         Optional<Personnel> personnel = personnelRepository.findByTelephoneAndPassword(telephone, password);
-        if(personnel.isPresent()) return personnel;
-        else return null;
+        return personnel;
     }
+
+
 
     public Optional<Personnel> findByEmail(String email){
         return personnelRepository.findByEmail(email);

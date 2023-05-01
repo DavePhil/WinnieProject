@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -37,17 +39,29 @@ public class ChefController {
 
     @ResponseBody
     @GetMapping("/getchefbyemailandpassword/{email}/{password}")
-    public Optional<Chef> getChefByEmailAndPassword(@PathVariable("email") String email,
-                                              @PathVariable("password") String password){
+    public Map<String,String> getChefByEmailAndPassword(@PathVariable("email") String email,
+                                         @PathVariable("password") String password){
 
-        return chefService.findByEmailAndPassword(email, password);
+        Optional<Chef> chef = chefService.findByEmailAndPassword(email, password);
+        String response ="";
+        HashMap<String, String> map = new HashMap<>();
+        if(chef.isPresent()) response = "Connexion reussie";
+        else response = "Impossible de vous connecter";
+        map.put("response", response);
+        return map;
 
     }
 
     @ResponseBody
     @GetMapping("/getchefbytelephoneandpassword/{telephone}/{password}")
-    public Optional<Chef> getchefByTelephoneAndPassword(@PathVariable("telephone") String telephone,
+    public Map<String,String> getchefByTelephoneAndPassword(@PathVariable("telephone") String telephone,
                                               @PathVariable("password") String password){
-        return chefService.findByTelephoneAndPassword(telephone, password);
+        Optional<Chef> chef = chefService.findByTelephoneAndPassword(telephone, password);
+        String response ="";
+        HashMap<String, String> map = new HashMap<>();
+        if(chef.isPresent()) response = "Connexion reussie";
+        else response = "Impossible de vous connecter";
+        map.put("response", response);
+        return map;
     }
 }

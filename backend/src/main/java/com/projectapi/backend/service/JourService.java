@@ -8,6 +8,9 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Data
 @Service
 public class JourService {
@@ -17,4 +20,13 @@ public class JourService {
         Jour saved = jourRepository.save(jour);
         return saved;
     }
+
+    public Optional<Jour> findJourById(Long id){
+        return jourRepository.findById(id);
+    }
+
+    public List<Jour> findJours(){
+        return jourRepository.findAll();
+    }
+
 }
