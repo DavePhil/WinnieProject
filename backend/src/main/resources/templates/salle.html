@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles_etudiant.css">
+    <script src="js/script.js" defer></script>
+
+    <title>etudiant</title>
+</head>
+<body>
+<div class="side-menu">
+    <div class="brand-name">
+        <h1>Admin</h1>
+    </div>
+    <ul>      <ul>     <li><a href="/"><img src="img/dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </a></li>
+        <li><a href="personnelList"><img src="img/teacher2.png" alt="">&nbsp; <span>Personnel</span></a></li>
+        <li><a href="salleList"><img src="img/school.png" alt="">&nbsp; <span>Salle</span> </a></li>
+        <li><a href="presenceList"><img src="img/payment.png" alt="">&nbsp; <span>Presence</span> </a></li>
+        <li><a href="jourList"><img src="img/help-web-button.png" alt="">&nbsp; <span> Jour </span></a> </li>
+        <li><a href="programmeList"><img src="img/settings.png" alt="">&nbsp; <span>Programme</span> </a></li>
+    </ul>
+    </ul>
+</div>
+<div class="container">
+    <div class="header">
+        <div class="nav">
+            <div class="user">
+                <button href="" class="btn" id="pop">Ajouter Evenement</button>
+                <a href="/" alt=""><h3>deconnexion</h3></a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="cards">
+            <div class="card">
+                <div class="box">
+                    <h1>3</h1>
+                    <h3>Personnel</h3>
+                </div>
+                <div class="icon-case">
+                    <img src="img/students.png" alt="">
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <h1> 2</h1>
+                    <h3>Evenements</h3>
+                </div>
+                <div class="icon-case">
+                    <img src="img/teachers.png" alt="">
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <h1>1</h1>
+                    <h3>Départements</h3>
+                </div>
+                <div class="icon-case">
+                    <img src="img/schools.png" alt="">
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <h1>2</h1>
+                    <h3>Programme</h3>
+                </div>
+                <div class="icon-case">
+                    <img src="img/income.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="content-2">
+            <div class="recent-payments">
+                <div class="title">
+                    <h2>Fiches</h2>
+                </div>
+                <table class="events-table">
+                    <thead>
+                    <tr>
+                        <th class="event-date">id</th>
+                        <th class="event-date">intitule</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="salle : ${salles}">
+
+                        <td data-label= "titre">[[*{salle.id}]]</td>
+                        <td data-label= "date">[[*{salle.intitule}]]</td>
+                        <td data-label="Supprimer"><a th:href="@{/salle/{id}(id=${salle.id})}"><img src="img/icons8-poubelle-50.png" alt=""></a></td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="modal">
+        <div class="cover"></div>
+        <main>
+            <form action="/createSalle" method="Post" ENCTYPE="multipart/form-data">
+                <div class="contactez-nous">
+
+                    <div>
+                        <label for="ni">Entrez la nom de la salle</label>
+                        <input type="text" id="ni" name="intitule"  required>
+                    </div>
+
+
+                    <div>
+                        <button type="submit" class="btn">Save</button>
+                    </div>
+                </div>
+
+            </form>
+        </main>
+    </div>
+  
+
+    </div>
+</section>
+
+
+
+</body>
+</html>

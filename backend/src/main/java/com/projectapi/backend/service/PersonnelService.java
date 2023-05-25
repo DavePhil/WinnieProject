@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 @Data
@@ -38,6 +39,10 @@ public class PersonnelService {
         return personnel;
     }
 
+    public void delete(Long id ){
+        personnelRepository.deleteById(id);
+    }
+
     public Personnel findByEmailAndPassword(String email, String password){
        return personnelRepository.findByEmailAndPassword(email, password);
 
@@ -45,6 +50,9 @@ public class PersonnelService {
     public Personnel findByTelephoneAndPassword(String telephone, String password){
        return personnelRepository.findByTelephoneAndPassword(telephone, password);
 
+    }
+    public List<Personnel> personnels(){
+        return personnelRepository.findAll();
     }
 
 

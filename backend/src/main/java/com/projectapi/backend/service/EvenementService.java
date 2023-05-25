@@ -8,6 +8,10 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
+
 @Data
 @Service
 public class EvenementService {
@@ -17,5 +21,17 @@ public class EvenementService {
     public Evenement saveEvenement(Evenement evenement){
         Evenement saved = evenementRepository.save(evenement);
         return saved;
+    }
+
+    public void  deleteEvenement(Long id ){
+        evenementRepository.deleteById(id);
+    }
+
+    public Optional<Evenement> getEvenement(Long id ){
+       return evenementRepository.findById(id);
+    }
+
+    public List<Evenement> evenements (){
+        return evenementRepository.findAll();
     }
 }

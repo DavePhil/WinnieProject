@@ -5,12 +5,11 @@ import com.projectapi.backend.model.Presence;
 import com.projectapi.backend.service.PresenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.awt.desktop.PreferencesEvent;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PresenceController {
@@ -27,6 +26,22 @@ public class PresenceController {
         presence.setLatitude(latitude);
         presence.setLongitude(longitude);
         presence.setLocation(location);
+        presence.setPersonnel(personnel);
         return presenceService.savePresence(presence);
+    }
+
+    @GetMapping("/presence/{id}")
+    public String delete (@PathVariable("id") Long id){
+        Optional<Presence> presence = presenceService.getPresence(id);
+        if (!presence.isPresent()) return "Evenement Absent" ;
+        presenceService.deletePresence(id);
+        return "redirect:/presenceList";
+    }
+
+    @GetMapping("/presenceList")
+    private String presences (Model model){
+        List<Presence> presences = presenceService.presences();
+        model.addAttribute("presences", presences);
+        return "presence.html";
     }
 }

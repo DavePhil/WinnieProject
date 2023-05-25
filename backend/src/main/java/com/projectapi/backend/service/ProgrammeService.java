@@ -22,7 +22,6 @@ public class ProgrammeService {
     }
 
     public List<Programme> findProgrammeByPersonnel (Long idPersonnel){
-
         return programmeRepository.findByPersonnel(idPersonnel);
     }
     public Optional<Programme> findProgrammeById(Long id){
@@ -31,6 +30,18 @@ public class ProgrammeService {
 
     public List<Programme> findProgrammeByPersonnelAndJour(Long personnelId, Long jourId){
         return programmeRepository.findByPersonnelAndJour(personnelId, jourId);
+    }
+
+    public void  delete(Long id ){
+        programmeRepository.deleteById(id);
+    }
+
+    public Optional<Programme> getProgramme (Long id ){
+        return programmeRepository.findById(id);
+    }
+
+    public List<Programme> programmes (){
+        return programmeRepository.findAll();
     }
 
 }

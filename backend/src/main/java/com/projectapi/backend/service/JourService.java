@@ -29,4 +29,8 @@ public class JourService {
         return jourRepository.findAll();
     }
 
+    public void delete (Long id ){
+         jourRepository.deleteById(id);
+    }
+
 }
