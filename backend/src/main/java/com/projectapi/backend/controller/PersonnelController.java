@@ -19,20 +19,21 @@ public class PersonnelController {
 
     @ResponseBody
     @PostMapping("/personnel")
-    public Personnel createPersonnel(@RequestParam("avatar") MultipartFile avatar,
+    public String createPersonnel(@RequestParam("photo") MultipartFile avatar,
                                      @RequestParam("nom") String nom,
                                      @RequestParam("email") String email,
                                      @RequestParam("telephone") String telephone) throws IOException {
         Personnel personnel = new Personnel();
         if(!avatar.getContentType().equals("image/jpeg") && !avatar.getContentType().equals("image/png")) {
             personnel.setResponse("Seulement les images jpeg ou png sont acceptees");
-            return personnel;
+            return "/personnelList";
         };
         if(personnelService.findByEmail(email).isPresent() || personnelService.findByTelephone(telephone).isPresent()){
             personnel.setResponse("L'utilisateur existe deja");
-            return personnel;// verifie la présence de l'email ou du télephone pour empêcher les doublons
+            return "/personnelList";// verifie la présence de l'email ou du télephone pour empêcher les doublons
         }
-        return personnelService.savePersonnel(avatar,nom,email,telephone);
+         personnelService.savePersonnel(avatar,nom,email,telephone);
+        return "/personnelList";
     }
 
     @ResponseBody
@@ -40,7 +41,6 @@ public class PersonnelController {
     public Personnel getPersonnelByEmailAndPassword(@PathVariable("email") String email,
                                               @PathVariable("password") String password){
         return personnelService.findByEmailAndPassword(email, password);
-
     }
 
     @ResponseBody

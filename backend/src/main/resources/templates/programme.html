@@ -28,7 +28,7 @@
     <div class="header">
         <div class="nav">
             <div class="user">
-                <button href="" class="btn" id="pop">Ajouter Evenement</button>
+                <button href="" class="btn" id="pop">Ajouter programme</button>
                 <a href="/" alt=""><h3>deconnexion</h3></a>
             </div>
         </div>
@@ -75,7 +75,7 @@
         <div class="content-2">
             <div class="recent-payments">
                 <div class="title">
-                    <h2>Fiches</h2>
+                    <h2>Programmes</h2>
                 </div>
                 <table class="events-table">
                     <thead>
@@ -140,7 +140,7 @@
                     </div>
                     <div>
                         <label>Votre jour </label>
-                        <select name="specialite" id="jour">
+                        <select name="jour" id="jour">
                             <option value="0" > Choisissez votre Jour </option>
                             <option th:each="jour : ${jour}" th:value="${jour.id}" th:text="${jour.intitule}"></option>
                         </select>

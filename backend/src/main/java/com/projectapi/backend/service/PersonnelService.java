@@ -25,14 +25,14 @@ public class PersonnelService {
     private PersonnelRepository personnelRepository;
     public Personnel savePersonnel(MultipartFile avatar, String name, String email, String telephone) throws IOException {
         Personnel personnel = new Personnel();
-        final String folder = new ClassPathResource("static/PhotoPersonnel/").getFile().getAbsolutePath();
-        final String route = ServletUriComponentsBuilder.fromCurrentContextPath().path("/PhotoPersonnel/").path(avatar.getOriginalFilename()).toUriString();
+        final String folder = new ClassPathResource("static/PhotoD/").getFile().getAbsolutePath();
+        final String route = ServletUriComponentsBuilder.fromCurrentContextPath().path("/PhotoD/").path(avatar.getOriginalFilename()).toUriString();
         byte [] bytes = avatar.getBytes();
         Path path = Paths.get(folder + File.separator +avatar.getOriginalFilename());
         Files.write(path,bytes);
         System.out.println(route);
         personnel.setEmail(email);
-        personnel.setAvatar("/PhotoPersonnel/"+avatar.getOriginalFilename());
+        personnel.setAvatar("/PhotoD/"+avatar.getOriginalFilename());
         personnel.setNom(name);
         personnel.setTelephone(telephone);
         personnelRepository.save(personnel);

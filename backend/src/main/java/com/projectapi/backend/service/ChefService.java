@@ -27,14 +27,14 @@ public class ChefService {
 
     public Chef saveChef(MultipartFile avatar, String name, String email,String telephone) throws IOException {
         Chef chef = new Chef();
-        final String folder = new ClassPathResource("static/PhotoPersonnel/").getFile().getAbsolutePath();
-        final String route = ServletUriComponentsBuilder.fromCurrentContextPath().path("/PhotoPersonnel/").path(avatar.getOriginalFilename()).toUriString();
+        final String folder = new ClassPathResource("static/PhotoD/").getFile().getAbsolutePath();
+        final String route = ServletUriComponentsBuilder.fromCurrentContextPath().path("/PhotoD/").path(avatar.getOriginalFilename()).toUriString();
         byte [] bytes = avatar.getBytes();
         Path path = Paths.get(folder + File.separator +avatar.getOriginalFilename());
         Files.write(path,bytes);
         System.out.println(route);
         chef.setEmail(email);
-        chef.setAvatar("/PhotoPersonnel/"+avatar.getOriginalFilename());
+        chef.setAvatar("/PhotoD/"+avatar.getOriginalFilename());
         chef.setNom(name);
         chef.setTelephone(telephone);
         chefRepository.save(chef);

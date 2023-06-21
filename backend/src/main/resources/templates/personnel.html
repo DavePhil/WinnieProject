@@ -75,7 +75,7 @@
         <div class="content-2">
             <div class="recent-payments">
                 <div class="title">
-                    <h2>Fiches</h2>
+                    <h2>Personnels</h2>
                 </div>
                 <table class="events-table">
                     <thead>
@@ -92,7 +92,7 @@
                     <tr th:each="personnel : ${personnels}">
 
                         <td data-label= "titre">[[*{personnel.id}]]</td>
-                        <td data-label= "titre">[[*{personnel.avatar}]]</td>
+                        <td data-label= "titre"><img  th:src="@{${personnel.avatar}}" alt="" style="width: 100px;height: 100px;"></td>
                         <td data-label= "titre">[[*{personnel.nom}]]</td>
                         <td data-label= "titre">[[*{personnel.email}]]</td>
                         <td data-label="Supprimer"><a th:href="@{/personnel/{id}(id=${personnel.id})}"><img src="img/icons8-poubelle-50.png" alt=""></a></td>
@@ -111,19 +111,19 @@
     <div class="modal">
         <div class="cover"></div>
         <main>
-            <form action="/personnels" method="Post" ENCTYPE="multipart/form-data">
+            <form action="/personnel" method="Post" ENCTYPE="multipart/form-data">
                 <div class="contactez-nous">
                     <div>
                         <label for="nomm">Votre nom</label>
                         <input type="text" id="nomm" name="nom" placeholder="Martin" required>
                     </div>
                     <div>
-                        <label for="emaill">Votre e-mail</label>
-                        <input type="email" id="emaill" name="email" placeholder="monadresse@mail.com" required>
+                        <label for="tel">Votre e-mail</label>
+                        <input type="email" id="tel" name="email" placeholder="Martin@gmail.com" required>
                     </div>
                     <div>
-                        <label for="tel">Votre e-mail</label>
-                        <input type="email" id="tel" name="telephone" placeholder="697624477" required>
+                        <label for="tel">Votre Telephone</label>
+                        <input type="text" id="tel" name="telephone" placeholder="697624477" required>
                     </div>
                     <div>  <label for="fi">Votre photo de profile</label>
                         <input type="file" name="photo" id="fi" >
