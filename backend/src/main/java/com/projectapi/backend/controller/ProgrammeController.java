@@ -69,6 +69,7 @@ public class ProgrammeController {
         programme.setSalle(salle);
         programme.setPersonnel(personnel);
         programme.setHoraire(horaire);
+        programmeService.saveProgramme(programme);
         return "redirect:/programmeList";
     }
 

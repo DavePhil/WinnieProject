@@ -26,14 +26,14 @@ public class PersonnelController {
         Personnel personnel = new Personnel();
         if(!avatar.getContentType().equals("image/jpeg") && !avatar.getContentType().equals("image/png")) {
             personnel.setResponse("Seulement les images jpeg ou png sont acceptees");
-            return "/personnelList";
+            return "redirect:/personnelList";
         };
         if(personnelService.findByEmail(email).isPresent() || personnelService.findByTelephone(telephone).isPresent()){
             personnel.setResponse("L'utilisateur existe deja");
-            return "/personnelList";// verifie la présence de l'email ou du télephone pour empêcher les doublons
+            return "redirect:/personnelList";// verifie la présence de l'email ou du télephone pour empêcher les doublons
         }
          personnelService.savePersonnel(avatar,nom,email,telephone);
-        return "/personnelList";
+        return "redirect:/personnelList";
     }
 
     @ResponseBody
@@ -50,7 +50,7 @@ public class PersonnelController {
          return  personnelService.findByTelephoneAndPassword(telephone, password);
     }
 
-    @PostMapping("/personnelList")
+    @PostMapping("/personneList")
     public String Personnel(@RequestParam("photo") MultipartFile avatar,
                                   @RequestParam("nom") String nom,
                                   @RequestParam("email") String email,
@@ -62,7 +62,7 @@ public class PersonnelController {
             return "Ce compte existe déjà...";
         }
         personnelService.savePersonnel(avatar,nom,email,telephone);
-        return "redirect:/personneList";
+        return "redirect:/personnelList";
     }
 
     @GetMapping("/personnel/{id}")
