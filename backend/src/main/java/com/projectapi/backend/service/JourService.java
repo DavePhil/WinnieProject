@@ -33,4 +33,5 @@ public class JourService {
          jourRepository.deleteById(id);
     }
 
+    public Long count(){return jourRepository.count();}
 }

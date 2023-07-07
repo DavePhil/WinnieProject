@@ -3,7 +3,9 @@ package com.projectapi.backend.controller;
 import com.projectapi.backend.model.Evenement;
 import com.projectapi.backend.model.Presence;
 import com.projectapi.backend.service.EvenementService;
+import com.projectapi.backend.service.PersonnelService;
 import com.projectapi.backend.service.PresenceService;
+import com.projectapi.backend.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,11 @@ import java.util.Optional;
 public class EvenementController {
     @Autowired
     private EvenementService evenementService;
+    @Autowired
+    private PersonnelService personnelService;
+    @Autowired
+    private ProgrammeService programmeService;
+
     @PostMapping("/evenement")
     @ResponseBody
     public Evenement create(@RequestBody Evenement evenement){

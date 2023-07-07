@@ -33,4 +33,6 @@ public class PresenceService {
     public List<Presence> presences (){
         return presenceRepository.findAll();
     }
+
+    public Long count(){return presenceRepository.count();}
 }

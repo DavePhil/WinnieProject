@@ -16,4 +16,7 @@ public interface ProgrammeRepository extends JpaRepository<Programme,Long> {
     @Query("select prog from Programme prog inner join Personnel pers on pers.id=prog.personnel.id inner join Jour j on j.id = prog.jour.id where pers.id =:personnelId and j.id =:jourId")
     List<Programme> findByPersonnelAndJour(@Param("personnelId")Long personnelId,
                                            @Param("jourId") Long jourId);
+
+    @Query("select prog from Programme prog inner join Jour j on j.id = prog.jour.id where j.id =:jourId")
+    List<Programme> findProgrammeByJour(@Param("jourId") Long jourId);
 }

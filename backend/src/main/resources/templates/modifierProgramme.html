@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles_etudiant.css">
+  <script src="js/script.js" defer></script>
+  <title>etudiant</title>
+</head>
+<body>
+
+
+
+<section>
+  <div class="modal" >
+    <div class="cover"></div>
+    <main class="margin-top-auto margin-bottom-xl">
+      <form th:action="@{/programmec/{id}(id=${programme.id})}" method="Post" ENCTYPE="multipart/form-data" >
+        <div class="contactez-nous">
+
+          <div>
+            <label for="heureDeDebut">  Heure De Debut: </label>
+            <input type="time" id="heureDeDebut" name="heureDeDebut" >
+          </div>
+          <div>
+            <label for="HeureDeFin">Heure De Fin:</label>
+            <input type="time" id="HeureDeFin" name="heureDeFin" >
+          </div>
+          <div>
+            <label for="salle">Votre salle</label>
+            <select name="salle" id="salle" >
+              <option value="" disabled selected hidden>Choisissez votre salle </option>
+              <tr th:each="salle : ${salle}" required>
+                <option  th:value="*{salle.id}">[[*{salle.intitule}]]</option>
+              </tr>
+            </select>
+          </div>
+          <div>
+            <label for="evenement">Votre evenement</label>
+            <select name="evenement" id="evenement" >
+              <option value="" disabled selected hidden>Choisissez votre evenement</option>
+              <tr th:each="evenement : ${evenement}" required>
+                <option  th:value="*{evenement.id}">[[*{evenement.intitule}]]</option>
+              </tr>
+            </select>
+          </div>
+          <div>
+            <label>Votre jour </label>
+            <select name="jour" id="jour">
+              <option value="0" > Choisissez votre Jour </option>
+              <option th:each="jour : ${jour}" th:value="${jour.id}" th:text="${jour.intitule}"></option>
+            </select>
+          </div>
+          <div>
+            <select name="personnel" id="personnel">
+              <option value="0" > Choisissez votre personnel </option>
+              <option th:each="personnel : ${personnel}" th:value="${personnel.id}" th:text="${personnel.nom}"></option>
+            </select>
+          </div>
+
+          <div>
+            <button type="submit" class="btn">Save</button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+</section>
+
+
+
+
+
+</body>
+</html>

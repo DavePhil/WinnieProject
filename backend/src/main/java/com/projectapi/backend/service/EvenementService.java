@@ -34,4 +34,6 @@ public class EvenementService {
     public List<Evenement> evenements (){
         return evenementRepository.findAll();
     }
+
+    public Long count(){return evenementRepository.count();}
 }

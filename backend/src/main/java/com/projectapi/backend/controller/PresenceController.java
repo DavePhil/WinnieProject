@@ -2,7 +2,10 @@ package com.projectapi.backend.controller;
 
 import com.projectapi.backend.model.Personnel;
 import com.projectapi.backend.model.Presence;
+import com.projectapi.backend.service.EvenementService;
+import com.projectapi.backend.service.PersonnelService;
 import com.projectapi.backend.service.PresenceService;
+import com.projectapi.backend.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,12 @@ import java.util.Optional;
 public class PresenceController {
     @Autowired
     private PresenceService presenceService;
+    @Autowired
+    private PersonnelService personnelService;
+    @Autowired
+    private ProgrammeService programmeService;
+    @Autowired
+    private EvenementService evenementService;
     @PostMapping("/presence")
     @ResponseBody
     public Presence create(@RequestParam("longitude") Double longitude,
@@ -40,6 +49,12 @@ public class PresenceController {
 
     @GetMapping("/presenceList")
     private String presences (Model model){
+        Long nbPersonnel = personnelService.count();
+        Long evenement = evenementService.count();
+        Long programme = programmeService.count();
+        model.addAttribute("evenement", evenement);
+        model.addAttribute("personnel",nbPersonnel);
+        model.addAttribute("programme",programme);
         List<Presence> presences = presenceService.presences();
         model.addAttribute("presences", presences);
         return "presence.html";

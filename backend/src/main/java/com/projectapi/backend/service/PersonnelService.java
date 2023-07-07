@@ -64,4 +64,6 @@ public class PersonnelService {
     public Optional<Personnel> findByTelephone(String telephone){
         return personnelRepository.findByTelephone(telephone);
     }
+
+    public Long count(){return personnelRepository.count();}
 }

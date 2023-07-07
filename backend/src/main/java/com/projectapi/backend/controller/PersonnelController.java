@@ -1,7 +1,9 @@
 package com.projectapi.backend.controller;
 
 import com.projectapi.backend.model.Personnel;
+import com.projectapi.backend.service.EvenementService;
 import com.projectapi.backend.service.PersonnelService;
+import com.projectapi.backend.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,10 @@ import java.util.List;
 public class PersonnelController {
     @Autowired
     PersonnelService personnelService;
+    @Autowired
+    private ProgrammeService programmeService;
+    @Autowired
+    private EvenementService evenementService;
 
     @ResponseBody
     @PostMapping("/personnel")
@@ -73,6 +79,12 @@ public class PersonnelController {
 
     @GetMapping("/personnelList")
     public String personnels(Model model){
+        Long nbPersonnel = personnelService.count();
+        Long evenement = evenementService.count();
+        Long programme = programmeService.count();
+        model.addAttribute("evenement", evenement);
+        model.addAttribute("personnel",nbPersonnel);
+        model.addAttribute("programme",programme);
         List<Personnel> personnels = personnelService.personnels();
         model.addAttribute("personnels", personnels);
         return "personnel.html";

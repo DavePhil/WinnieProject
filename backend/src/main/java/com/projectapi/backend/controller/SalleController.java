@@ -1,7 +1,11 @@
 package com.projectapi.backend.controller;
 
 import com.projectapi.backend.model.Evenement;
+import com.projectapi.backend.model.Programme;
 import com.projectapi.backend.model.Salle;
+import com.projectapi.backend.service.EvenementService;
+import com.projectapi.backend.service.PersonnelService;
+import com.projectapi.backend.service.ProgrammeService;
 import com.projectapi.backend.service.SalleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +19,12 @@ import java.util.Optional;
 public class SalleController {
     @Autowired
     private SalleService salleService;
+    @Autowired
+    private PersonnelService personnelService;
+    @Autowired
+    private ProgrammeService programmeService;
+    @Autowired
+    private EvenementService evenementService;
 
     @PostMapping("/salle")
     @ResponseBody
@@ -40,6 +50,12 @@ public class SalleController {
 
     @GetMapping("/salleList")
     private String salles (Model model){
+        Long nbPersonnel = personnelService.count();
+        Long evenement = evenementService.count();
+        Long programme = programmeService.count();
+        model.addAttribute("evenement", evenement);
+        model.addAttribute("personnel",nbPersonnel);
+        model.addAttribute("programme",programme);
         List<Salle> salles = salleService.salles();
         model.addAttribute("salles", salles);
         return "salle.html";

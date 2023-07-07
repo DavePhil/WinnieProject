@@ -4,6 +4,8 @@ import com.projectapi.backend.model.Chef;
 import com.projectapi.backend.model.Evenement;
 import com.projectapi.backend.service.ChefService;
 import com.projectapi.backend.service.EvenementService;
+import com.projectapi.backend.service.PersonnelService;
+import com.projectapi.backend.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,11 @@ public class ChefController {
     ChefService chefService;
     @Autowired
     EvenementService evenementService;
+    @Autowired
+    private PersonnelService personnelService;
+    @Autowired
+    private ProgrammeService programmeService;
+
 
     @PostMapping("/chef")
     @ResponseBody
@@ -60,6 +67,12 @@ public class ChefController {
     @GetMapping("/")
     public String HomePagE(Model model)
     {
+        Long nbPersonnel = personnelService.count();
+        Long evenement = evenementService.count();
+        Long programme = programmeService.count();
+        model.addAttribute("evenement", evenement);
+        model.addAttribute("personnel",nbPersonnel);
+        model.addAttribute("programme",programme);
        List<Evenement> evenements = evenementService.evenements();
        model.addAttribute("evenements", evenements);
         return "/index.html";

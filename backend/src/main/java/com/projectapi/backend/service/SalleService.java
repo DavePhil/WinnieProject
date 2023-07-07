@@ -33,5 +33,7 @@ public class SalleService {
         return salleRepository.findAll();
     }
 
+    public Long count(){return salleRepository.count();}
+
 
 }

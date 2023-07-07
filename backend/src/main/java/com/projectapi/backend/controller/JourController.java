@@ -3,7 +3,10 @@ package com.projectapi.backend.controller;
 import com.projectapi.backend.model.Jour;
 import com.projectapi.backend.model.Presence;
 import com.projectapi.backend.model.Salle;
+import com.projectapi.backend.service.EvenementService;
 import com.projectapi.backend.service.JourService;
+import com.projectapi.backend.service.PersonnelService;
+import com.projectapi.backend.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,12 @@ import java.util.Optional;
 public class JourController {
     @Autowired
     private JourService jourService;
+    @Autowired
+    private PersonnelService personnelService;
+    @Autowired
+    private ProgrammeService programmeService;
+    @Autowired
+    private EvenementService evenementService;
     @PostMapping("/jour")
     @ResponseBody
     public Jour create(@RequestBody Jour jour){
@@ -53,6 +62,12 @@ public class JourController {
 
     @GetMapping("/jourList")
     private String presences (Model model){
+        Long nbPersonnel = personnelService.count();
+        Long evenement = evenementService.count();
+        Long programme = programmeService.count();
+        model.addAttribute("evenement", evenement);
+        model.addAttribute("personnel",nbPersonnel);
+        model.addAttribute("programme",programme);
         List<Jour> jours = jourService.findJours();
         model.addAttribute("jours", jours);
         return "jour.html";
