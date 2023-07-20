@@ -5,7 +5,6 @@ import com.projectapi.backend.service.EvenementService;
 import com.projectapi.backend.service.PersonnelService;
 import com.projectapi.backend.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,6 @@ public class PersonnelController {
     @Autowired
     private EvenementService evenementService;
 
-    @ResponseBody
     @PostMapping("/personnel")
     public String createPersonnel(@RequestParam("photo") MultipartFile avatar,
                                      @RequestParam("nom") String nom,
